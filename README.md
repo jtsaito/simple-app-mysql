@@ -10,7 +10,7 @@ make the database container accessible by linking it from the app container.
 A detailed description of how the app container works is given in the
 [forerunner example's repo](https://github.com/jtsaito/simple-app).
 
-1. Launch the mysql container.
+(1) Launch the mysql container.
 
 ```
 docker run --name some-mysql-2 -e MYSQL_ROOT_PASSWORD=secret_password_here -e MYSQL_DATABASE=simple-app-mysql -d mysql
@@ -20,21 +20,19 @@ We need to assign the `name` to use it later for the `docker run --link` option 
 
 We are using the `mysql` conatiner from [registry.hub.docker.com](https://registry.hub.docker.com/_/mysql/) which allows passing database name, user name and password by environment variables as in the example call above.
 
-
-2. Crucially, we have set the `name` as `host` entry in our `config/databases.yml`.
+(2) Crucially, we have set the `name` as `host` entry in our `config/databases.yml`.
 
 ```
 production: 
    host: some-mysql-2
 ```
 
-
-2. Run the app container's shell.
+(3) Run the app container's shell.
 ```
 docker run -p 80:80 --link some-mysql-2:some-mysql-2 -i -t --entrypoint /bin/bash jtsaito/simple-app-mysql -s
 ```
 
-3. Set up the database for the Rails project on the container. 
+(4) Set up the database for the Rails project on the container. 
 
 ```
 root@e5c1421b3af5:/var/www/simple-app# bundle exec rake db:setup
@@ -59,13 +57,13 @@ irb(main):001:0> Note.all
 => #<ActiveRecord::Relation []>
 ```
 
-4. Launch the container as usual.
+(5) Launch the container as usual.
 
 ```
 docker run -p 80:80 --link some-mysql-2:some-mysql-2  -i -t jtsaito/simple-app-mysql -d
 ```
 
-5. If we now check with `docker ps` we see both docker containers. 
+(6) If we now check with `docker ps` we see both docker containers. 
 
 ```
 CONTAINER ID   IMAGE                             COMMAND CREATED        CREATED             STATUS              PORTS                  NAMES
@@ -73,4 +71,4 @@ CONTAINER ID   IMAGE                             COMMAND CREATED        CREATED 
 5966e75f83d0   mysql:latest                      "/entrypoint.sh mysql  22 minutes ago      Up 22 minutes       3306/tcp some-mysql-2
 ```
 
-6. We can now run visit port 80 on our box (when using docker2boot: `boot2docker ip`).
+(7) We can now  visit port 80 on our box (when using docker2boot don't forget `boot2docker ip`).
