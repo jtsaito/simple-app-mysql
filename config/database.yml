@@ -15,14 +15,13 @@ default: &default
   pool: 5
   username: root
   # pass password by ENV in real world
-  password: hoehoe
+  password: secret_password_here
   host: some-mysql-2
   socket: /tmp/mysql.sock
 
 development:
   <<: *default
   database: simple-app-mysql
-  password: hoehoe
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

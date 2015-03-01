@@ -10,7 +10,7 @@ make the database container accessible by linking it from the app container.
 1. Launch the mysql container.
 
 ```
-docker run --name some-mysql-2 -e MYSQL_ROOT_PASSWORD=hoehoe -e MYSQL_DATABASE=simple-app-mysql -d mysql
+docker run --name some-mysql-2 -e MYSQL_ROOT_PASSWORD=secret_password_here -e MYSQL_DATABASE=simple-app-mysql -d mysql
 ```
 
 We need to assign the `name` to use it later for the `docker run --link` option when launching the app container.
