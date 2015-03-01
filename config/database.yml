@@ -14,12 +14,15 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password:
+  # pass password by ENV in real world
+  password: hoehoe
+  host: some-mysql-2
   socket: /tmp/mysql.sock
 
 development:
   <<: *default
-  database: simple-app-mysql_development
+  database: simple-app-mysql
+  password: hoehoe
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -49,6 +52,4 @@ test:
 #
 production:
   <<: *default
-  database: simple-app-mysql_production
-  username: simple-app-mysql
-  password: <%= ENV['SIMPLE-APP-MYSQL_DATABASE_PASSWORD'] %>
+  database: simple-app-mysql

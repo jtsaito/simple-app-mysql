@@ -7,6 +7,10 @@ RUN apt-get update -q
 
 # 'noninteractive' will stop tty related warnings
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -qy nginx ruby2.1 ruby2.1-dev nodejs sqlite3 libsqlite3-dev zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev git-core curl
+
+# mysql client libs
+RUN DEBIAN_FRONTEND=noninteractive sudo apt-get install -qy mysql-client libmysqlclient-dev
+
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN rm /etc/nginx/sites-enabled/default
 RUN mkdir -p /var/www
