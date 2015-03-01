@@ -1,5 +1,5 @@
-Running a Rails App MySQL in Docker Different Containers
-========================================================
+A Rails App and MySQL in Separate Docker Containers
+===================================================
 
 The example simple-app-mysql Rails app contains only a single model
 (Note) and a single controller generating a new Note instance and rendering
