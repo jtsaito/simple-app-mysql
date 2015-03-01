@@ -7,6 +7,9 @@ it as text. Here we describe how to launch the app and the database
 (MySQL in our example) in two separate Docker containers and how to 
 make the database container accessible by linking it from the app container.
 
+A detailed description of how the app container works is given in the
+[forerunner example's repo](https://github.com/jtsaito/simple-app).
+
 1. Launch the mysql container.
 
 ```
