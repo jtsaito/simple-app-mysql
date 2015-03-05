@@ -1,0 +1,12 @@
+simpleappmysql:
+  build: .
+  links:
+    - somemysql2:some-mysql-2
+  ports:
+    - "80:80"
+
+somemysql2:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: secret_password_here
+    MYSQL_DATABASE:      simple-app-mysql
